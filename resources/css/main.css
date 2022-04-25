@@ -1,0 +1,24 @@
+#post{
+    display: flex;
+    flex-wrap: wrap;
+}
+#post p,
+#post h3,
+#footer_post li .des{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+#footer_post li .des{
+    -webkit-line-clamp: 2;
+    height: 3rem;
+}
+#post p{
+    -webkit-line-clamp: 5;
+    height: 7.5rem;
+}
+#post h3{
+    -webkit-line-clamp: 1;
+    height: 2.5rem;
+}
