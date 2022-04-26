@@ -4,8 +4,12 @@
 
         <!-- !PAGE CONTENT! -->
         <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-            <h4>{{ !empty($message)? $message : '' }}</h4>
-            <!-- First Photo Grid-->
+            @if (session('message'))
+                <div class="w3-red w3-padding-16">
+                    {{ session('message') }}
+                </div>
+            @endif
+        <!-- First Photo Grid-->
             <div class="w3-row-padding w3-padding-16 w3-center" id="post">
                 @foreach($posts as $post)
                     <div class="w3-quarter">
@@ -13,17 +17,15 @@
                         <h3>{{ $post['title'] }}</h3>
                         <p>{{ $post['description'] }}</p>
                         <span>total rate: {{ $post['rate'] }}</span>
-                        <form action="" method="post">
+                        <form action="{{ route('post.like', $post['id']) }}" method="post">
                             @csrf
-                            <input name="id" type="hidden" value="{{ $post['id'] }}">
-                            <button name="like" type="submit"
-                                    class="w3-button w3-theme-d1 w3-margin-bottom w3-green w3-round">
-                                <i class="fa fa-thumbs-up"></i>  Like
-                            </button>
-                            <button name="dislike" type="submit"
-                                    class="w3-button w3-theme-d2 w3-margin-bottom w3-red w3-round">
-                                <i class="fa fa-thumbs-down"></i>  Dislike
-                            </button>
+                            <input name="like" type="submit" value="like"
+                                   class="w3-button w3-theme-d2 w3-margin-bottom w3-green w3-round">
+                        </form>
+                        <form action="{{ route('post.dislike', $post['id']) }}" method="post">
+                            @csrf
+                            <input name="dislike" type="submit" value="dislike"
+                                   class="w3-button w3-theme-d2 w3-margin-bottom w3-red w3-round">
                         </form>
                     </div>
                 @endforeach

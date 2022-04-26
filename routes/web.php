@@ -13,4 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::match(['get','post'],'', 'HomeController@home');
+Route::get('', 'HomeController@home')->name('post');
+Route::post('/like/{like}', 'HomeController@like')->name('post.like');
+Route::post('/dislike/{dislike}', 'HomeController@dislike')->name('post.dislike');
